@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
-from models import Student, Group, Teacher, Subject, Grade
+from model_ref import Student, Group, Teacher, Subject, Grade
 
 # Підключення до бази даних
 engine = create_engine('postgresql+psycopg2://user:university@localhost/university_postgresql')
