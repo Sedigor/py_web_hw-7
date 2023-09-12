@@ -1,33 +1,33 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from faker import Faker
-from model_ref import Student, Group, Teacher, Subject, Grade
+import my_select
 
-# Підключення до бази даних
-engine = create_engine('postgresql+psycopg2://user:university@localhost/university_postgresql')
-Session = sessionmaker(bind=engine)
-session = Session()
 
-fake = Faker()
-
-# Створення груп
-groups = [Group(name=fake.random_element(elements=("Group A", "Group B", "Group C"))) for _ in range(3)]
-
-# Створення вчителів
-teachers = [Teacher(name=fake.name()) for _ in range(5)]
-
-# Створення предметів та призначення їх вчителям
-subjects = [Subject(name=fake.random_element(elements=("Math", "History", "English"))) for _ in range(8)]
-for subject in subjects:
-    subject.teacher = fake.random_element(teachers)
-
-# Створення студентів
-students = [Student(name=fake.name(), group=fake.random_element(groups)) for _ in range(50)]
-
-# Створення оцінок для студентів із предметів
-for student in students:
-    for subject in subjects:
-        session.add(Grade(student=student, subject=subject, grade=fake.pyfloat(left_digits=1, right_digits=1, positive=True)))
-
-# Збереження даних у базу даних
-session.commit()
+def main():
+    my_select.query_1()
+    
+    my_select.query_2()
+    
+    my_select.query_3()
+    
+    my_select.query_4()
+    
+    my_select.query_5()
+    
+    group_id = 3
+    my_select.query_6(group_id)
+    
+    group_id = 2
+    subject_id = 4
+    my_select.query_7(group_id, subject_id)
+    
+    my_select.query_8()
+    
+    grade_id = 5
+    my_select.query_9(grade_id)
+    
+    student_id = 15
+    teacher_id = 1
+    my_select.query_10(student_id, teacher_id)
+    
+    
+if __name__ == '__main__':
+    main()

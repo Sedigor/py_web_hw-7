@@ -18,8 +18,9 @@ def create_students(num_students, num_groups):
     
 def create_groups(num_groups):
     for i in range(num_groups):
+        i+=1
         group = Group(
-            name='Group_' + str(i + 1)
+            name='Group_' + str(i)
         )
         session.add(group)
     session.commit()
