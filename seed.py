@@ -1,16 +1,18 @@
-from connect_db import session
+import connect_db
 from models import Student, Teacher, Group, Subject, Grade
 import faker
 import random
 
 
+session = connect_db.session
 fake = faker.Faker()
 
 
 def create_students(num_students, num_groups):
     for _ in range(num_students):
         student = Student(
-            name=fake.name(),
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
             group_id=random.randint(1, num_groups)
         )
         session.add(student)
@@ -20,7 +22,7 @@ def create_groups(num_groups):
     for i in range(num_groups):
         i+=1
         group = Group(
-            name='Group_' + str(i)
+            groupname='Group_' + str(i)
         )
         session.add(group)
     session.commit()
@@ -28,7 +30,8 @@ def create_groups(num_groups):
 def create_teachers(num_teachers):
     for _ in range(num_teachers):
         teacher = Teacher(
-            name=fake.name()
+            first_name=fake.first_name(),
+            last_name=fake.last_name()
         )
         session.add(teacher)
     session.commit()
@@ -36,7 +39,7 @@ def create_teachers(num_teachers):
 def create_subjects(subjects, num_teachers):
     for subject in subjects:
         subject = Subject(
-            name=subject,
+            subject_name=subject,
             teacher_id=random.randint(1, num_teachers)
         )
         session.add(subject)
@@ -46,7 +49,7 @@ def create_grades(num_grades, num_students, subjects):
     for _ in range(num_grades):
         grade = Grade(
             grade=random.randint(60, 100),
-            date_received=fake.date_this_year(),
+            grade_date=fake.date_this_year(),
             student_id = random.randint(1, num_students),
             subject_id = random.randint(1, len(subjects))
         )

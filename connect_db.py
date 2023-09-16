@@ -8,7 +8,7 @@ from config import db_user, db_password, db_host, db_port, db_name
 # docker run --name postgres_db_07 -p 5432:5432 -e POSTGRES_PASSWORD=secretpass -d postgres
 
 # db_url = f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
-db_url = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}/{db_name}'
+db_url = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
 
 engine = create_engine(db_url)
 Session = sessionmaker(bind=engine)
