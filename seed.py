@@ -7,6 +7,7 @@ import random
 session = connect_db.session
 fake = faker.Faker()
 
+subjects = ['Mathematics', 'Literature', 'History', 'Geography', 'Physics']
 
 def create_students(num_students, num_groups):
     for _ in range(num_students):
@@ -62,7 +63,7 @@ if __name__ == '__main__':
     number_students = 40
     number_teachers = 5
     number_groups = 3
-    subjects = ['Mathematics', 'Literature', 'History', 'Geography', 'Physics']
+    
     number_grades = 10 * len(subjects) * number_students
     
     create_students(number_students, number_groups)
